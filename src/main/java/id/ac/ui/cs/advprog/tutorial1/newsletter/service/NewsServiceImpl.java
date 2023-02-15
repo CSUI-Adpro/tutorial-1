@@ -94,7 +94,7 @@ public class NewsServiceImpl implements NewsService {
             }
         }
         // Mendapatkan newsletter terkait
-        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan")
+        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
         for (Newsletter n : getAllNewsletters()) {
             if (n.getName().equals(newsletterName)) {
                 newsletter = n;
@@ -114,7 +114,7 @@ public class NewsServiceImpl implements NewsService {
             }
         }
         // Mendapatkan newsletter terkait
-        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan")
+        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
         for (Newsletter n : getAllNewsletters()) {
             if (n.getName().equals(newsletterName)) {
                 newsletter = n;
