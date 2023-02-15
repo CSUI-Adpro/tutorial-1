@@ -32,8 +32,8 @@ public class NewsletterController {
 
     @RequestMapping(path = "", method = RequestMethod.POST)
     public String handleNewBroadcast(Model model, @RequestParam(value = "newsletterName") String newsletterName) {
-        // TODO: Lengkapi method ini
-
+        // Handle broadcast baru
+        newsService.handleNewBroadcast(newsletterName);
         return "redirect:/newsletter";
     }
 
@@ -54,8 +54,8 @@ public class NewsletterController {
     public String handleSubscribe(Model model,
                                   @RequestParam(value = "userName") String userName,
                                   @RequestParam(value = "newsletterName") String newsletterName) {
-        // TODO: Lengkapi method ini
-
+        // Handle subscribe baru
+        newsService.handleSubscribe(userName, newsletterName);
         return "redirect:/newsletter/subscribe";
     }
 
@@ -63,8 +63,8 @@ public class NewsletterController {
     public String handleUnsubscribe(Model model,
                                   @RequestParam(value = "userName") String userName,
                                   @RequestParam(value = "newsletterName") String newsletterName) {
-        // TODO: Lengkapi method ini
-
+        // Handle unsubscribe
+        newsService.handleUnsubscribe(userName, newsletterName);
         return "redirect:/newsletter/subscribe";
     }
 }
