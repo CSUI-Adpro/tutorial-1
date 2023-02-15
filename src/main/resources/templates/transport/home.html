@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Kalkulator Transportasi</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="row" style="margin: 1em 0 2em 1em;">
+            <h2 class="h2 d-flex">Kalkulator Transportasi</h2>
+        </div>
+
+        <form th:action="@{/transport/calculate-cost}" method="POST">
+            <div class="col">
+                <div class="row" style="margin: 1em 0 2em 0;">
+                    <select name="location" id="locationSelection" style="width: 25%;">
+                        <option>Pilih Lokasi</option>
+                        <option th:each="item : ${locationNames}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                </div>
+                <div class="row" style="margin: 1em 0 2em 0;">
+                    <select name="transportType" id="transportTypeSelection" style="width: 25%;">
+                        <option>Pilih Transportasi</option>
+                        <option th:each="item : ${transportTypes}" th:value="${item}" th:text="${item}"></option>
+                    </select>
+                </div>
+                <div class="row" style="margin: 1em 0 2em 0;">
+                    <button class="btn btn-primary" type="submit">Hitung</button>
+                </div>
+            </div>
+        </form>
+
+        <div>
+            <div class="col" th:if="${isInvalidRange}">
+                <div class="row" style="margin: 1em 0 0 0;">
+                    Invalid Range
+                </div>
+            </div>
+            <div class="col" th:unless="${isInvalidRange}">
+                <div class="row" style="margin: 1em 0 0 0;">
+                    <h3 class="h3 d-flex">Hasil Perhitungan</h3>
+                </div>
+                <div class="row" style="margin: 1em 0 0 0;">
+                    <p th:text="${costResults == null} ? 'Ongkos: ...' : 'Ongkos: Rp.' + ${costResults.getFare()} "></p>
+                </div>
+                <div class="row" style="margin: 1em 0 0 0;">
+                    <p th:text="${costResults == null} ? 'Waktu: ...' : 'Waktu: ' + ${costResults.getTimeEstimationInHour()} + ' Jam' "></p>
+                </div>
+                <div class="row" style="margin: 1em 0 0 0;">
+                    <p th:text="${costResults == null} ? 'Tingkat kepuasan: ...' : 'Tingkat kepuasan: ' + ${costResults.getSatisfaction()} "></p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
