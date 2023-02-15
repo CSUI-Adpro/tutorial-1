@@ -13,7 +13,8 @@ public class User implements Subscriber {
 
     public void handleNotification(String from) {
         // Menambahkan notifikasi ke news
-        news.add(from);
+        String notification = "Mendapatkan notifikasi baru dari "+from+"!";
+        news.add(notification);
     }
 
     public String getName() {
