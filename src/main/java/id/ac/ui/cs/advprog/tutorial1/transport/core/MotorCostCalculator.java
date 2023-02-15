@@ -28,7 +28,7 @@ public class MotorCostCalculator implements TransportCostCalculator {
             fare = Double.valueOf(5000);
             return fare;
         }
-        // CASE 2: Saat lebih dari 2 km
+        // CASE 2: Saat lebih dari 2 km cost 1500 / km
         fare = Double.valueOf(5000+(1500*distanceInKm-2));
         return fare;
     }
@@ -43,9 +43,10 @@ public class MotorCostCalculator implements TransportCostCalculator {
     
     @Override
     public Integer getTransportSatisfaction(Double distanceInKm) {
+        // Inisial satisfaction adalah 10
         // KM 0-10 Satisfaction tetap 10
-        // KM Selanjutnya -1 / km
-        Integer satisfaction;
+        // KM Selanjutnya -1 / 10 km
+        Integer satisfaction = 10;
         if (distanceInKm <= 10) {
             satisfaction = Integer.valueOf(10);
         }
