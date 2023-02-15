@@ -80,12 +80,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void handleNewBroadcast(String newsletterName) {
         // Mendapatkan newsletter yang sesuai
-        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
-        for (Newsletter n : getAllNewsletters()) {
-            if (n.getName().equals(newsletterName)) {
-                newsletter = n;
-            }
-        }
+        Newsletter newsletter = newsletterRepository.findByName(newsletterName);
         for (Subscriber u : newsletter.getSubscribers()) {
             u.handleNotification(newsletterName);
         }
@@ -95,13 +90,8 @@ public class NewsServiceImpl implements NewsService {
     public void handleSubscribe(String userName, String newsletterName) {
         // Mendapatkan user terkait
         User user = userRepository.findByName(userName);
-        // Mendapatkan newsletter terkait
-        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
-        for (Newsletter n : getAllNewsletters()) {
-            if (n.getName().equals(newsletterName)) {
-                newsletter = n;
-            }
-        }
+        // Mendapatkan newsletter yang sesuai
+        Newsletter newsletter = newsletterRepository.findByName(newsletterName);
         // Melakukan subscribe user pada newsletter
         newsletter.addSubscriber(user);
     }
@@ -110,13 +100,8 @@ public class NewsServiceImpl implements NewsService {
     public void handleUnsubscribe(String userName, String newsletterName) {
         // Mendapatkan user terkait
         User user = userRepository.findByName(userName);
-        // Mendapatkan newsletter terkait
-        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
-        for (Newsletter n : getAllNewsletters()) {
-            if (n.getName().equals(newsletterName)) {
-                newsletter = n;
-            }
-        }
+        // Mendapatkan newsletter yang sesuai
+        Newsletter newsletter = newsletterRepository.findByName(newsletterName);
         // Melakukan subscribe user pada newsletter
         newsletter.removeSubscriber(user);
     }
