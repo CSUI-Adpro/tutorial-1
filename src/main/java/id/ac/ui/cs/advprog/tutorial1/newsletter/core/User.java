@@ -12,7 +12,8 @@ public class User implements Subscriber {
     }
 
     public void handleNotification(String from) {
-        // TODO: Lengkapi method ini
+        // Menambahkan notifikasi ke news
+        news.add(from);
     }
 
     public String getName() {

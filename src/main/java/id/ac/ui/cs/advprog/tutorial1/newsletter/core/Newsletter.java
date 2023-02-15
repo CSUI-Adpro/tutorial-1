@@ -12,14 +12,19 @@ public class Newsletter implements Publisher {
     }
 
     public void addSubscriber(Subscriber subscriber) {
-        // TODO: Lengkapi method ini
+        // Menambahkan subscriber
+        subscribers.add(subscriber);
     }
 
     public void removeSubscriber(Subscriber subscriber) {
-        // TODO: Lengkapi method ini
+        // Menghapus subscriber dari newsletter
+        subscribers.remove(subscriber);
     }
     public void notifySubscriber() {
-        // TODO: Lengkapi method ini
+        // Memberi notifikasi ke subscribers
+        for (Subscriber s : subscribers) {
+            s.handleNotification(name);
+        }
     }
 
     public String getName() {

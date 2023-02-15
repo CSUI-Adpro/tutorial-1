@@ -80,6 +80,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void handleNewBroadcast(String newsletterName) {
         // TODO: Lengkapi method ini
+        newsletterRepository
     }
 
     @Override
