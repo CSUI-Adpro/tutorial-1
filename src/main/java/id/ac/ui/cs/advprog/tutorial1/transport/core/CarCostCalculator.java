@@ -6,7 +6,6 @@ import id.ac.ui.cs.advprog.tutorial1.transport.exceptions.InvalidDistanceExcepti
 public class CarCostCalculator implements TransportCostCalculator {
     @Override
     public Cost getCosts(Double distanceInKm) {
-        // TODO: implement method
         // Melakukan pengecekan jarak sesuai kalkulasi transportasi 0 <= jarak <= 25 km
         assertWithinDistanceLimit(distanceInKm);
         // Terdiri dari 3 komponen cost yaitu:
@@ -20,9 +19,9 @@ public class CarCostCalculator implements TransportCostCalculator {
         Cost cost = new Cost(fare, timeInHour, satisfaction);
         return cost;
     }
-    
+
     @Override
-    public Double getTransportTimeInHour(Double distanceInKm) {
+    public Double getTransportFare(Double distanceInKm) {
         // CASE 1: Saat di bawah atau sama dengan 2 km tarif 10000
         Double fare;
         if (distanceInKm <= 2) {
@@ -30,12 +29,12 @@ public class CarCostCalculator implements TransportCostCalculator {
             return fare;
         }
         // CASE 2: Saat lebih dari 2 km cost 3500 / km
-        fare = Double.valueOf(10000+(3500*distanceInKm-2));
+        fare = Double.valueOf(10000 + (3500 * distanceInKm - 2));
         return fare;
     }
-
+    
     @Override
-    public Double getTransportFare(Double distanceInKm) {
+    public Double getTransportTimeInHour(Double distanceInKm) {
         // Kecepatan perjalanan motor adalah 30 km/jam
         // Waktu = Jarak / Kecepatan
         Double time = Double.valueOf(distanceInKm/30);
