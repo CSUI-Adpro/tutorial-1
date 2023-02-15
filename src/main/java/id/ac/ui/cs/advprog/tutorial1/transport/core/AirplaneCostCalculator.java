@@ -47,7 +47,7 @@ public class AirplaneCostCalculator implements TransportCostCalculator {
         // KM cost -1 / 100 km
         Integer satisfaction = 10;
         int minPoint = (int) Math.floor(distanceInKm/100);
-        satisfaction = satisfaction - Integer.valueOf(minPoint);
+        satisfaction -= Integer.valueOf(minPoint);
         // Handle minimal 1
         return satisfaction < 1 ? 1 : satisfaction;
     }
