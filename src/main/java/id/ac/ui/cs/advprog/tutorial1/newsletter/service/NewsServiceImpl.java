@@ -94,12 +94,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void handleSubscribe(String userName, String newsletterName) {
         // Mendapatkan user terkait
-        User user = new User("User tidak ditemukan");
-        for (User u : getAllUsers()) {
-            if (u.getName().equals(userName)) {
-                user = u;
-            }
-        }
+        User user = userRepository.findByName(userName);
         // Mendapatkan newsletter terkait
         Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
         for (Newsletter n : getAllNewsletters()) {
@@ -114,12 +109,7 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public void handleUnsubscribe(String userName, String newsletterName) {
         // Mendapatkan user terkait
-        User user = new User("User tidak ditemukan");
-        for (User u : getAllUsers()) {
-            if (u.getName().equals(userName)) {
-                user = u;
-            }
-        }
+        User user = userRepository.findByName(userName);
         // Mendapatkan newsletter terkait
         Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
         for (Newsletter n : getAllNewsletters()) {
