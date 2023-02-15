@@ -29,7 +29,8 @@ public class CarCostCalculator implements TransportCostCalculator {
             return fare;
         }
         // CASE 2: Saat lebih dari 2 km cost 3500 / km
-        fare = Double.valueOf(10000 + (3500 * distanceInKm - 2));
+        distanceInKm -= 2;
+        fare = Double.valueOf(10000 + (3500 * distanceInKm));
         return fare;
     }
     
@@ -48,7 +49,8 @@ public class CarCostCalculator implements TransportCostCalculator {
         Integer satisfaction = 10;
         int minPoint = (int) Math.floor(distanceInKm/5);
         satisfaction = satisfaction - Integer.valueOf(minPoint);
-        return satisfaction;
+        // Handle minimal 1
+        return satisfaction < 1 ? 1 : satisfaction;
     }
 
     private void assertWithinDistanceLimit(Double distanceInKm){
