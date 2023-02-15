@@ -79,9 +79,6 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void handleNewBroadcast(String newsletterName) {
-        // Menambahkan broadcast baru
-//        Newsletter newsletter = new Newsletter(newsletterName);
-//        newsletterRepository.addNewsletter(newsletterName, newsletter);
         // Mendapatkan newsletter yang sesuai
         Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan");
         for (Newsletter n : getAllNewsletters()) {
