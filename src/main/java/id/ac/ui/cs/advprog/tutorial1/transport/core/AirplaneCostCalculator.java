@@ -28,8 +28,8 @@ public class AirplaneCostCalculator implements TransportCostCalculator {
             return fare;
         }
         // CASE 2: Saat lebih dari 300 km cost 150000 / km
-        distanceInKm -= 400;
-        fare += Double.valueOf(150000 * Math.ceil((distanceInKm)/100) );
+        distanceInKm -= 300;
+        fare += Double.valueOf(150000 * Math.floor((distanceInKm)/100) );
         return fare;
     }
 
@@ -54,7 +54,7 @@ public class AirplaneCostCalculator implements TransportCostCalculator {
     
     private void assertWithinDistanceLimit(Double distanceInKm){
         // Implement method, throws InvalidDistanceException if requirements are not met
-        if (distanceInKm < 0) {
+        if (distanceInKm < 300) {
             throw new InvalidDistanceException();
         }
     }
