@@ -92,8 +92,17 @@ public class NewsServiceImpl implements NewsService {
         User user = userRepository.findByName(userName);
         // Mendapatkan newsletter yang sesuai
         Newsletter newsletter = newsletterRepository.findByName(newsletterName);
+        // Jika user pernah subscribe tidak perlu ditambahkan ke daftar subscriber lagi
+        boolean isSubscribed = false;
+        for (Subscriber s : newsletter.getSubscribers()) {
+            if (s.equals(user)) {
+                isSubscribed = true;
+            }
+        }
         // Melakukan subscribe user pada newsletter
-        newsletter.addSubscriber(user);
+        if (!isSubscribed) {
+            newsletter.addSubscriber(user);
+        }
     }
 
     @Override
@@ -105,5 +114,4 @@ public class NewsServiceImpl implements NewsService {
         // Melakukan subscribe user pada newsletter
         newsletter.removeSubscriber(user);
     }
-
 }
