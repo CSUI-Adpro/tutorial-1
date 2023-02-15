@@ -79,18 +79,49 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public void handleNewBroadcast(String newsletterName) {
-        // TODO: Lengkapi method ini
-        newsletterRepository
+        // Menambahkan broadcast baru
+        Newsletter newsletter = new Newsletter(newsletterName);
+        newsletterRepository.addNewsletter(newsletterName, newsletter);
     }
 
     @Override
     public void handleSubscribe(String userName, String newsletterName) {
-        // TODO: Lengkapi method ini
+        // Mendapatkan user terkait
+        User user = new User("User tidak ditemukan");
+        for (User u : getAllUsers()) {
+            if (u.getName().equals(userName)) {
+                user = u;
+            }
+        }
+        // Mendapatkan newsletter terkait
+        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan")
+        for (Newsletter n : getAllNewsletters()) {
+            if (n.getName().equals(newsletterName)) {
+                newsletter = n;
+            }
+        }
+        // Melakukan subscribe user pada newsletter
+        newsletter.addSubscriber(user);
     }
 
     @Override
     public void handleUnsubscribe(String userName, String newsletterName) {
-        // TODO: Lengkapi method ini
+        // Mendapatkan user terkait
+        User user = new User("User tidak ditemukan");
+        for (User u : getAllUsers()) {
+            if (u.getName().equals(userName)) {
+                user = u;
+            }
+        }
+        // Mendapatkan newsletter terkait
+        Newsletter newsletter = new Newsletter("Newsletter tidak ditemukan")
+        for (Newsletter n : getAllNewsletters()) {
+            if (n.getName().equals(newsletterName)) {
+                newsletter = n;
+            }
+        }
+        // Melakukan subscribe user pada newsletter
+        newsletter.removeSubscriber(user);
     }
 
 }
