@@ -49,7 +49,7 @@ public class MotorCostCalculator implements TransportCostCalculator {
         // KM Selanjutnya -1 / 10 km
         Integer satisfaction = 10;
         if (distanceInKm <= 10) {
-            satisfaction = Integer.valueOf(10);
+            return satisfaction;
         }
         int minPoint = (int) Math.floor(distanceInKm/10);
         satisfaction -= Integer.valueOf(minPoint);
