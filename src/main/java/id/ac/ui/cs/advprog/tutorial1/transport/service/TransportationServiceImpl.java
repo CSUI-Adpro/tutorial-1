@@ -18,8 +18,29 @@ public class TransportationServiceImpl implements TransportationService{
 
     @Override
     public Cost calculateCost(String locationName, String transportationTypeName) {
-        //TODO: implement method
         // Returns either Cost or null
-        return null;
+        // CHECK 1 : Cek LocationName dan mendapatkan jarak
+        Location location = this.locationRepository.findByName(locationName);
+        if (location == null) {
+            return null;
+        }
+        // Memasangkan transportation strategy
+        Double distance = location.getDistance();
+        Cost cost;
+        // CHECK 2 : Cek Transportation TypeName lalu menghitung cost berdasarkan jarak
+        if (transportationTypeName.equals("Motorcycle")) {
+            // Motorcycle
+            transportStrategy = new MotorCostCalculator();
+            cost = transportStrategy.getCosts(distance);
+        } else if (transportationTypeName.equals("Car")) {
+            // Car
+            transportStrategy = new CarCostCalculator();
+            cost = transportStrategy.getCosts(distance);
+        } else {
+            // Airplane
+            transportStrategy = new AirplaneCostCalculator();
+            cost = transportStrategy.getCosts(distance);
+        }
+        return cost;
     }
 }
